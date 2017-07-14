@@ -36,21 +36,20 @@ class Player{
         }
     }
     registerControls(){
-        console.log('here')
         window.onkeydown = (e)=>{
-            console.log('press', e.code)
             switch(e.code){
                 case "ArrowLeft": this.left = true; break;
                 case "ArrowRight": this.right = true; break;
                 case "ArrowUp": this.jump = true; break;
+                case "Space": this.jump = true; break;
             }
         }
         window.onkeyup = (e)=>{
-            console.log('press', e.code)
             switch(e.code){
                 case "ArrowLeft": this.left = false;  break;
                 case "ArrowRight": this.right = false; break;
                 case "ArrowUp": this.jump = false; break;
+                case "Space": this.jump = false; break;
             }
         }
     }
