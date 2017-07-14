@@ -38,6 +38,14 @@ class Player{
             }
         }
     }
+    
+    collide(x, y, w, h) {
+        return (x < this.location.x + this.width &&
+        x + w > this.location.x &&
+        y < this.location.y + this.height &&
+        h + y > this.location.y);
+    }
+    
     registerControls(){
         window.onkeydown = (e)=>{
             switch(e.code){
@@ -56,10 +64,10 @@ class Player{
                 case "Space": this.jump = false; break;
                 case "ArrowDown": this.stop = false; break;
 
+               }
             }
         }
     }
-}
 
 class Platform{
     constructor(location, w, h) {
@@ -78,22 +86,70 @@ class Platform{
     }
 }
 
-const Platforms = [];
+let Platforms = [];
 const iWidth = window.innerWidth;
 const iHeight = window.innerHeight;
-Platforms.push(new Platform(new Point(iWidth/3,iHeight-120), 2*(iWidth/3), 20));
-Platforms.push(new Platform(new Point(0, iHeight-240), iWidth/3, 20));
-Platforms.push(new Platform(new Point(iWidth/3+30, iHeight-240), iWidth/6, 20));
-Platforms.push(new Platform(new Point(iWidth/3+iWidth/6+60, iHeight-240), iWidth/6, 20));
-for (i = 0; i < 5; i++) {
-  Platforms.push(new Platform(new Point(iWidth/6 + (i * 70)+ 100, iHeight -340 - (i * 30)), 40, 20))
+const Borders = [
+  [0, 0, iWidth, 20],
+  [0, iHeight -20, iWidth, 100],
+  [0, 0, 20, iHeight],
+  [iWidth -20, 0, 20, iHeight],
+];
+
+function clearLevel() {
+  Platforms = [];
 }
-Platforms.push(new Platform(new Point(iWidth/3+iWidth/6+150, iHeight-540), iWidth/6, 20));
-Platforms.push(new Platform(new Point(0, 60), iWidth/6*3.4, 20));
 
+const LevelOne = [
+  [iWidth/3, iHeight-120, 2*(iWidth/3), 20],
+  [0, iHeight-240, iWidth/3, 20],
+  [iWidth/3+30, iHeight-240, iWidth/6, 20],
+  [iWidth/3+iWidth/6+60, iHeight-240, iWidth/6, 20],
+  [iWidth/3+iWidth/6+150,iHeight-540,iWidth/6, 20],
+  [0,80,iWidth/6*3.4, 20],
+];
 
-//borders
-Platforms.push(new Platform(new Point(0, 0), window.innerWidth, 20))
-Platforms.push(new Platform(new Point(0, window.innerHeight-20), window.innerWidth, 100))
-Platforms.push(new Platform(new Point(0, 0), 20, window.innerHeight))
-Platforms.push(new Platform(new Point(window.innerWidth -20, 0), 20, window.innerHeight))
+const LevelTwo = [
+  [iWidth/3, iHeight-120, 2*(iWidth/3), 20],
+  [0, iHeight-240, iWidth/3, 20],
+  [0, iHeight-450, iWidth/4, 20],
+  [iWidth/3, iHeight-550, 20,330],
+  [iWidth/7, iHeight-390, 20,170],
+
+  [iWidth/3+iWidth/6+60+iWidth/3, iHeight-240, iWidth/6, 20],
+  [iWidth/3+iWidth/6+60+iWidth/3+30, iHeight-340, iWidth/6, 20],
+  [iWidth/3+iWidth/6+150,iHeight-400,iWidth/6, 20],
+  [iWidth/3+iWidth/6,iHeight-500,iWidth/6, 20],
+  [60,80,iWidth/6*3.4, 20],
+];
+
+for (i = 0; i < 5; i++) {
+  LevelOne.push([iWidth/6 + (i * 70)+ 100, iHeight -340 - (i * 30), 40, 20]);
+}
+
+function ApplyPlatforms(from, to) {
+  from.forEach(plat => {
+    const point = new Point(plat[0], plat[1]);
+    const platform = new Platform(point, plat[2], plat[3]);
+    to.push(platform);
+  });
+}
+
+Levels = {
+  '1': {
+    layout: LevelOne,
+    startPoint: new Point(100,window.innerHeight-70),
+    endPoint: new Point(30, 50),
+  },
+  '2': {
+    layout: LevelTwo,
+    startPoint: new Point(100,window.innerHeight-70),
+    endPoint: new Point(100, 380),
+  },
+}
+
+function setupLevel(lvl) {
+  clearLevel();
+  ApplyPlatforms(Borders, Platforms);
+  ApplyPlatforms(Levels[lvl].layout, Platforms);
+}
