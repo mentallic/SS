@@ -5,16 +5,17 @@ let PowerUps = [];
 PowerUps.push(new Powerup(40, 300), new Powerup(540, 300));
 let endPoint = (new Point(30, 50));
 const player = new Player(new Point(100,window.innerHeight-70))
+setupLevel(1);
 
 function loop(t){
     const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext("2d");
-    if(player.collide(endPoint.x, endPoint.y, 1, 1)) {          
+    if(player.collide(endPoint.x, endPoint.y, 1, 1)) {
         ctx.fillStyle = 'black'
         ctx.font = "15px Arial";
         ctx.fillText(`next level`, 50, 50);
     }  else {
-        runGame(canvas, ctx);   
+        runGame(canvas, ctx);
     }
 
     window.requestAnimationFrame(loop);
