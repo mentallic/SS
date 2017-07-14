@@ -1,6 +1,6 @@
 let SCORE = 0;
 let START = new Date().getTime();
-let LEVEL = 1;
+let LEVEL = 2;
 const PhysicsEngine = new Physics();
 let PowerUps = [];
 PowerUps.push(new Powerup(40, 300), new Powerup(540, 300));

@@ -112,10 +112,15 @@ const LevelOne = [
 const LevelTwo = [
   [iWidth/3, iHeight-120, 2*(iWidth/3), 20],
   [0, iHeight-240, iWidth/3, 20],
-  [iWidth/3+30, iHeight-240, iWidth/6, 20],
-  [iWidth/3+iWidth/6+60, iHeight-240, iWidth/6, 20],
-  [iWidth/3+iWidth/6+150,iHeight-540,iWidth/6, 20],
-  [0,80,iWidth/6*3.4, 20],
+  [0, iHeight-450, iWidth/4, 20],
+  [iWidth/3, iHeight-550, 20,330],
+  [iWidth/7, iHeight-390, 20,170],
+
+  [iWidth/3+iWidth/6+60+iWidth/3, iHeight-240, iWidth/6, 20],
+  [iWidth/3+iWidth/6+60+iWidth/3+30, iHeight-340, iWidth/6, 20],
+  [iWidth/3+iWidth/6+150,iHeight-400,iWidth/6, 20],
+  [iWidth/3+iWidth/6,iHeight-500,iWidth/6, 20],
+  [60,80,iWidth/6*3.4, 20],
 ];
 
 for (i = 0; i < 5; i++) {
@@ -139,7 +144,7 @@ Levels = {
   '2': {
     layout: LevelTwo,
     startPoint: new Point(100,window.innerHeight-70),
-    endPoint: new Point(50, 50),
+    endPoint: new Point(100, 380),
   },
 }
 
