@@ -34,13 +34,14 @@ function runGame() {
     player.draw(ctx);
     PowerUps.forEach(pu => pu.draw(ctx));
     Platforms.forEach(platform => platform.draw(ctx));
+    ctx.fillStyle = 'red'
     ctx.fillRect(endPoint.x, endPoint.y, 10, 10);
     ctx.fillStyle = 'white'
     ctx.font = "15px Arial";
     ctx.fillText(`Score ${SCORE}`, 50, window.innerHeight-5);
     ctx.fillText(`Time: ${(new Date().getTime() - START) / 1000}s`, 250, window.innerHeight-5);
-
 }
+
 function init(){
   canvas = document.getElementById("myCanvas");
   canvas.width = document.body.clientWidth; //document.width is obsolete

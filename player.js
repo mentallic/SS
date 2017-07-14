@@ -38,14 +38,14 @@ class Player{
             }
         }
     }
-    
+
     collide(x, y, w, h) {
         return (x < this.location.x + this.width &&
         x + w > this.location.x &&
         y < this.location.y + this.height &&
         h + y > this.location.y);
     }
-    
+
     registerControls(){
         window.onkeydown = (e)=>{
             switch(e.code){
@@ -118,6 +118,27 @@ const LevelTwo = [
   [0,80,iWidth/6*3.4, 20],
 ];
 
+const LevelThree = [
+  [0, iHeight -140, iWidth - 80, 40],
+  [iWidth - 100, 100, 20, iHeight-200],
+  [iWidth - 200, 0, 20, iHeight-200],
+  [80, 80, 20, iHeight-280],
+  [80, iHeight -200, iWidth - 260, 20],
+  [iWidth - 100, iHeight-100, 40, 20],
+  [iWidth - 40, iHeight-200, 40, 20],
+  [iWidth - 100, iHeight-300, 40, 20],
+  [iWidth - 40, iHeight-400, 40, 20],
+  [iWidth - 100, iHeight-500, 40, 20],
+  [iWidth - 40, iHeight-600, 40, 20],
+  [60, iHeight-200, 40, 20],
+  [0, iHeight-300, 40, 20],
+  [60, iHeight-400, 40, 20],
+  [0, iHeight-500, 40, 20],
+  [60, iHeight-600, 40, 20],
+  [0, iHeight-700, 40, 20],
+  [80, 80, iWidth-360, 20],
+];
+
 for (i = 0; i < 5; i++) {
   LevelOne.push([iWidth/6 + (i * 70)+ 100, iHeight -340 - (i * 30), 40, 20]);
 }
@@ -140,6 +161,11 @@ Levels = {
     layout: LevelTwo,
     startPoint: new Point(100,window.innerHeight-70),
     endPoint: new Point(50, 50),
+  },
+  '3': {
+    layout: LevelThree,
+    startPoint: new Point(100,window.innerHeight-70),
+    endPoint: new Point(window.innerWidth/2, window.innerHeight/2),
   },
 }
 
