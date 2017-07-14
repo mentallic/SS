@@ -1,11 +1,16 @@
 class Physics {
-    applyGravity(gameObjects, collisions) {
-        gameObjects.forEach(gameObject => {
-          gameObject.applyVelocity(0, 3);
-          check('x', gameObject, collisions);
-          check('y', gameObject, collisions);
-        });
-    }
+  applyGravity(gameObjects, collisions, powerUps) {
+    gameObjects.forEach(gameObject => {
+      gameObject.applyVelocity(0, 3);
+      check('x', gameObject, collisions);
+      check('y', gameObject, collisions);
+    });
+    const player = gameObjects[0];
+    const newPowerUps = powerUps.filter((gameObject, i) => {
+      return !gameObject.checkAndApply(player);
+    });
+    return newPowerUps;
+  }
 }
 
 function check(prop, gameObject, collisions) {
@@ -19,7 +24,7 @@ function check(prop, gameObject, collisions) {
     return null;
   }).filter(platform => platform);
   if (collisionTarget.length > 0) {
-    if (prop === 'y' && gameObject.velocity.y > 0) {    
+    if (prop === 'y' && gameObject.velocity.y > 0) {
         gameObject.jumping = false;
     }
     const velocity = new Point(gameObject.velocity.x, gameObject.velocity.y);
