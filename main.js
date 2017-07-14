@@ -1,11 +1,12 @@
 let SCORE = 0;
 let START = new Date().getTime();
+let LEVEL = 1;
 const PhysicsEngine = new Physics();
 let PowerUps = [];
 PowerUps.push(new Powerup(40, 300), new Powerup(540, 300));
-let endPoint = (new Point(30, 50));
-const player = new Player(new Point(100,window.innerHeight-70))
-setupLevel(1);
+let endPoint = Levels[LEVEL].endPoint;
+const player = new Player(Levels[LEVEL].startPoint);
+setupLevel(LEVEL);
 
 function loop(t){
     const canvas = document.getElementById("myCanvas");
@@ -14,6 +15,10 @@ function loop(t){
         ctx.fillStyle = 'black'
         ctx.font = "15px Arial";
         ctx.fillText(`next level`, 50, 50);
+        LEVEL++;
+        setupLevel(LEVEL);
+        player.location = Levels[LEVEL].startPoint;
+        endPoint = Levels[LEVEL].endPoint;
     }  else {
         runGame(canvas, ctx);
     }

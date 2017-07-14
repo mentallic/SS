@@ -133,13 +133,13 @@ function ApplyPlatforms(from, to) {
 Levels = {
   '1': {
     layout: LevelOne,
-    startPoint: new Point(0, 0),
-    endPoint: new Point(40, 40),
+    startPoint: new Point(100,window.innerHeight-70),
+    endPoint: new Point(30, 50),
   },
   '2': {
     layout: LevelTwo,
-    startPoint: new Point(0, 0),
-    endPoint: new Point(40, 40),
+    startPoint: new Point(100,window.innerHeight-70),
+    endPoint: new Point(50, 50),
   },
 }
 
