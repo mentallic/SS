@@ -30,9 +30,9 @@ class Player{
         }
         if (this.jump) {
             if(!this.jumping) {
-               this.applyVelocity(0,-30); 
+               this.applyVelocity(0,-30);
                this.jumping = true;
-            } 
+            }
         }
     }
     registerControls(){
@@ -42,7 +42,7 @@ class Player{
             switch(e.code){
                 case "ArrowLeft": this.left = true; break;
                 case "ArrowRight": this.right = true; break;
-                case "ArrowUp": this.jump = true; break;               
+                case "ArrowUp": this.jump = true; break;
             }
         }
         window.onkeyup = (e)=>{
@@ -50,7 +50,7 @@ class Player{
             switch(e.code){
                 case "ArrowLeft": this.left = false;  break;
                 case "ArrowRight": this.right = false; break;
-                case "ArrowUp": this.jump = false; break;               
+                case "ArrowUp": this.jump = false; break;
             }
         }
     }
@@ -88,6 +88,7 @@ Platforms.push(new Platform(new Point(0, iHeight-620), iWidth/6*3.4, 20));
 
 
 //borders
+Platforms.push(new Platform(new Point(0, 0), window.innerWidth, 20))
 Platforms.push(new Platform(new Point(0, window.innerHeight-20), window.innerWidth, 100))
 Platforms.push(new Platform(new Point(0, 0), 20, window.innerHeight))
 Platforms.push(new Platform(new Point(window.innerWidth -20, 0), 20, window.innerHeight))
