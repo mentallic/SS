@@ -84,7 +84,7 @@ for (i = 0; i < 5; i++) {
   Platforms.push(new Platform(new Point(iWidth/6 + (i * 60)+ 100, iHeight -340 - (i * 50)), 40, 20))
 }
 Platforms.push(new Platform(new Point(iWidth/3+iWidth/6+150, iHeight-540), iWidth/6, 20));
-Platforms.push(new Platform(new Point(0, iHeight-620), iWidth/6*3.4, 20));
+Platforms.push(new Platform(new Point(0, 60), iWidth/6*3.4, 20));
 
 
 //borders
