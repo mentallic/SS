@@ -12,9 +12,8 @@ function loop(t){
     const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext("2d");
     if(player.collide(endPoint.x, endPoint.y, 1, 1)) {
-        ctx.fillStyle = 'black'
-        ctx.font = "15px Arial";
-        ctx.fillText(`next level`, 50, 50);
+        SCORE += (100 - ((new Date().getTime() - START)/1000)) * 100;
+        START = new Date().getTime();
         LEVEL++;
         setupLevel(LEVEL);
         player.location = Levels[LEVEL].startPoint;
