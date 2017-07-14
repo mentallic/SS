@@ -38,6 +38,14 @@ class Player{
             }
         }
     }
+    
+    collide(x, y, w, h) {
+        return (x < this.location.x + this.width &&
+        x + w > this.location.x &&
+        y < this.location.y + this.height &&
+        h + y > this.location.y);
+    }
+    
     registerControls(){
         window.onkeydown = (e)=>{
             switch(e.code){
@@ -56,10 +64,10 @@ class Player{
                 case "Space": this.jump = false; break;
                 case "ArrowDown": this.stop = false; break;
 
+               }
             }
         }
     }
-}
 
 class Platform{
     constructor(location, w, h) {
