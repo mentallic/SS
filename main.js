@@ -3,6 +3,8 @@ let START = new Date().getTime();
 const PhysicsEngine = new Physics();
 let PowerUps = [];
 PowerUps.push(new Powerup(40, 300), new Powerup(540, 300));
+setupLevel(2);
+
 function loop(t){
     const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext("2d");

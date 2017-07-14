@@ -78,22 +78,65 @@ class Platform{
     }
 }
 
-const Platforms = [];
+let Platforms = [];
 const iWidth = window.innerWidth;
 const iHeight = window.innerHeight;
-Platforms.push(new Platform(new Point(iWidth/3,iHeight-120), 2*(iWidth/3), 20));
-Platforms.push(new Platform(new Point(0, iHeight-240), iWidth/3, 20));
-Platforms.push(new Platform(new Point(iWidth/3+30, iHeight-240), iWidth/6, 20));
-Platforms.push(new Platform(new Point(iWidth/3+iWidth/6+60, iHeight-240), iWidth/6, 20));
-for (i = 0; i < 5; i++) {
-  Platforms.push(new Platform(new Point(iWidth/6 + (i * 70)+ 100, iHeight -340 - (i * 30)), 40, 20))
+const Borders = [
+  [0, 0, iWidth, 20],
+  [0, iHeight -20, iWidth, 100],
+  [0, 0, 20, iHeight],
+  [iWidth -20, 0, 20, iHeight],
+];
+
+function clearLevel() {
+  Platforms = [];
 }
-Platforms.push(new Platform(new Point(iWidth/3+iWidth/6+150, iHeight-540), iWidth/6, 20));
-Platforms.push(new Platform(new Point(0, 60), iWidth/6*3.4, 20));
 
+const LevelOne = [
+  [iWidth/3, iHeight-120, 2*(iWidth/3), 20],
+  [0, iHeight-240, iWidth/3, 20],
+  [iWidth/3+30, iHeight-240, iWidth/6, 20],
+  [iWidth/3+iWidth/6+60, iHeight-240, iWidth/6, 20],
+  [iWidth/3+iWidth/6+150,iHeight-540,iWidth/6, 20],
+  [0,80,iWidth/6*3.4, 20],
+];
 
-//borders
-Platforms.push(new Platform(new Point(0, 0), window.innerWidth, 20))
-Platforms.push(new Platform(new Point(0, window.innerHeight-20), window.innerWidth, 100))
-Platforms.push(new Platform(new Point(0, 0), 20, window.innerHeight))
-Platforms.push(new Platform(new Point(window.innerWidth -20, 0), 20, window.innerHeight))
+const LevelTwo = [
+  [iWidth/3, iHeight-120, 2*(iWidth/3), 20],
+  [0, iHeight-240, iWidth/3, 20],
+  [iWidth/3+30, iHeight-240, iWidth/6, 20],
+  [iWidth/3+iWidth/6+60, iHeight-240, iWidth/6, 20],
+  [iWidth/3+iWidth/6+150,iHeight-540,iWidth/6, 20],
+  [0,80,iWidth/6*3.4, 20],
+];
+
+for (i = 0; i < 5; i++) {
+  LevelOne.push([iWidth/6 + (i * 70)+ 100, iHeight -340 - (i * 30), 40, 20]);
+}
+
+function ApplyPlatforms(from, to) {
+  from.forEach(plat => {
+    const point = new Point(plat[0], plat[1]);
+    const platform = new Platform(point, plat[2], plat[3]);
+    to.push(platform);
+  });
+}
+
+Levels = {
+  '1': {
+    layout: LevelOne,
+    startPoint: new Point(0, 0),
+    endPoint: new Point(40, 40),
+  },
+  '2': {
+    layout: LevelTwo,
+    startPoint: new Point(0, 0),
+    endPoint: new Point(40, 40),
+  },
+}
+
+function setupLevel(lvl) {
+  clearLevel();
+  ApplyPlatforms(Borders, Platforms);
+  ApplyPlatforms(Levels[lvl].layout, Platforms);
+}
