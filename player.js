@@ -13,6 +13,7 @@ class Player{
         this.left = false;
         this.right = false;
         this.jump = false;
+        this.stop = false;
     }
     draw(ctx){
         this.move();
@@ -23,7 +24,9 @@ class Player{
         this.velocity.y += y;
     }
     move() {
-        if(this.left) {
+        if (this.stop) {
+          this.velocity.x = 0;
+        } else if(this.left) {
             this.applyVelocity(-0.3, 0);
         } else if (this.right) {
             this.applyVelocity(0.3, 0);
@@ -42,6 +45,7 @@ class Player{
                 case "ArrowRight": this.right = true; break;
                 case "ArrowUp": this.jump = true; break;
                 case "Space": this.jump = true; break;
+                case "ArrowDown": this.stop = true; break;
             }
         }
         window.onkeyup = (e)=>{
@@ -50,6 +54,8 @@ class Player{
                 case "ArrowRight": this.right = false; break;
                 case "ArrowUp": this.jump = false; break;
                 case "Space": this.jump = false; break;
+                case "ArrowDown": this.stop = false; break;
+
             }
         }
     }
